@@ -11,6 +11,7 @@ var root_y = root_y_default;
 var tree;
 
 $(document).ready(function() {
+	// tree = init0();
 	tree = init1();
 	// show(tree, tree.root);
 	// tree.preOrder(tree.root);
@@ -19,6 +20,10 @@ $(document).ready(function() {
 	// tree.BFS();
 	// tree.leftRotate(tree.root.right.right);
 	// tree.rightRotate(tree.root.right);
+
+	tree.delete(tree.search(tree.root, 11));
+
+	// tree.delete(tree.search(tree.root, 4));
 	show(tree.root, root_x, root_y);
 	// var n = tree.search(tree.root, 9);
 	// console.log(n);
@@ -32,7 +37,7 @@ function init0() {
 	tree.insert(tree.root, 1);
 	tree.insert(tree.root, 5);
 	tree.insert(tree.root, 8);
-	tree.insert(tree.root, 7);
+	// tree.insert(tree.root, 7);
 	tree.insert(tree.root, 10);
 	tree.insert(tree.root, 2);
 	tree.insert(tree.root, 11);
@@ -44,7 +49,9 @@ function init0() {
 function init1() {
 	var tree = new Tree();
 	// var a = [13,1,8,11,6,15,17,22,25,27];
-	var a = [1,2,3,4,5,6,7,8,9,10,11,12,13,];
+	// var a = [1,2,3,4,5,6,7,8,9,10,];
+	var a = [15,10,11,12,9,5,4,8,];
+	// var a = [6,1,2,3,4,5];
 	for (var i in a) {
 		tree.insert(tree.root, a[i]);
 	}
@@ -57,8 +64,8 @@ function createNode(x, y, v, color) {
 	container.append('<div class="node '+color+'" style="left:'+x+'px;top: '+y+'px;z-index:100;">'+v+'</div>');
 }
 
-function createNilNode(x, y) {
-	container.append('<div class="leaf black" style="left:'+x+'px;top: '+y+'px;z-index:100;">nil</div>');
+function createNilNode(x, y, v) {
+	container.append('<div class="leaf black" style="left:'+x+'px;top: '+y+'px;z-index:100;" data-pv="'+v+'">nil</div>');
 }
 
 function createArrow(x0, y0, x1, y1) {
@@ -80,7 +87,7 @@ function show(node, x0, y0) {
 		y = y0 + Dy * a;
 	}
 	if (node.value == null) {
-		createNilNode(x, y);
+		createNilNode(x, y, node.parent.value);
 	} else {
 		createNode(x, y, node.value, node.color);
 	}

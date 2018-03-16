@@ -21,12 +21,20 @@ body {
 	border-radius: 15px;
 }
 
+.node:hover {
+	cursor: pointer;
+}
+
 .leaf {
 	position: absolute;
 	width: 30px;
 	height: 15px;
 	line-height: 15px;
 	text-align: center;
+}
+
+.leaf:hover {
+	cursor: pointer;
 }
 
 .arrow {
